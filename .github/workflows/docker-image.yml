@@ -7,6 +7,8 @@ on:
       - Dockerfile
     tags-ignore:
       - "*"
+  # Allow trigger manually
+  workflow_dispatch:
 
 jobs:
   docker:
