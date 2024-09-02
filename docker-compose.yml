@@ -1,0 +1,9 @@
+services:
+  hadoop:
+    build: 
+      context: .
+    ports:
+      - 8088:8088
+      - 9870:9870
+    volumes:
+      - .:/home/hadoop/sampledata
