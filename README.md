@@ -5,5 +5,5 @@ Using docker compose is the recommended option, just git clone this repo, cd int
 Using docker command
 
 ```bash
-docker run --name hadoop -p 8088:8088 -p 9870:9870 --rm hadoop-hadoop:latests
+docker run --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 ```
