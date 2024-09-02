@@ -5,9 +5,8 @@ ARG USERNAME=hadoop
 
 COPY config/ /temp
 
-RUN \
-    # Add user hadoop and allow sudo
-    export DEBIAN_FRONTEND=noninteractive \
+# Add user hadoop and allow sudo
+RUN export DEBIAN_FRONTEND=noninteractive \
     && apt update && apt install -y sudo \
     && groupadd --gid $GID $USERNAME \
     && useradd --uid $UID --gid $GID -m $USERNAME \
