@@ -35,8 +35,10 @@ RUN \
     && cat /temp/mapred-site.xml > hadoop/etc/hadoop/mapred-site.xml \
     && cat /temp/yarn-site.xml > hadoop/etc/hadoop/yarn-site.xml \
     && mkdir -p hadoop_store/hdfs \
-    && sudo rm -rf /temp \
-    && hadoop/bin/hdfs namenode -format
+    && sudo rm -rf /temp
+
+# FORMAT DFS
+RUN hadoop/bin/hdfs namenode -format
 
 # Variables
 

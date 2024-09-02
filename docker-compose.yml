@@ -6,4 +6,4 @@ services:
       - 8088:8088
       - 9870:9870
     volumes:
-      - sampledata:/home/hadoop/sampledata
+      - ./sampledata:/home/hadoop/sampledata
