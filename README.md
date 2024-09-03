@@ -36,11 +36,15 @@ bash
 docker run --name test-script -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
 
 # On the shell opened for ubuntu container
+
+# 1st batch of commands as root user; can be copied together
 apt update && apt install -y git
 git clone https://github.com/gathecageorge/hadoop.git /setup
 cd /setup/setup-on-ubuntu-scripts
 ./install-user.sh hadoop
 su hadoop
+
+# 2nd batch of commands as hadoop user; can be copied together
 cd /home/hadoop
 bash
 /setup/setup-on-ubuntu-scripts/setup.sh
