@@ -36,4 +36,4 @@ sed -i "s/CURRENT_USER_TO_BE_REPLACED/$ARG_CURRENT_USER/g" hadoop/etc/hadoop/hdf
 
 # Create data dir and format folder for hdfs
 mkdir -p hadoop_store/hdfs
-hdfs namenode -format
+hadoop/bin/hdfs namenode -format
