@@ -44,7 +44,7 @@ COPY startup.sh /usr/local/bin/startup.sh
 EXPOSE 22
 EXPOSE 8088
 EXPOSE 9870
-RUN sudo mkdir /var/run/sshd
+RUN sudo mkdir -p /var/run/sshd
 RUN sudo rm -rf /temp
 
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/startup.sh"]
