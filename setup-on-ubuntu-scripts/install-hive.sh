@@ -33,6 +33,7 @@ fi
 source .bashrc
 
 # Create hive dir in dfs
+hadoop/sbin/start-all.sh
 hadoop/bin/hdfs dfs -mkdir /tmp
 hadoop/bin/hdfs dfs -chmod g+w /tmp
 hadoop/bin/hdfs dfs -mkdir -p /home/$ARG_CURRENT_USER/hive/warehouse 
