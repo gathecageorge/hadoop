@@ -1,19 +1,19 @@
 # Running
 
-Using docker compose is the recommended option, just git clone this repo, cd into the directory and run `docker compose up -d`
+Using docker compose will build the image locally and run it. This might take alot of time, just git clone this repo, cd into the directory and run `docker compose up -d`
 
-Using docker command
+Using docker command is easier and uses an already built image thus faster.
 
 ```bash
-docker run -d --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+docker run -d --name hadoop -p 8088:8088 -p 9870:9870 -p 8888:8888 --rm gathecageorge/hadoop:3.2.0
 
 # If on apple silicon or arm
-docker run -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+docker run -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 -p 8888:8888 --rm gathecageorge/hadoop:3.2.0
 ```
 
 # Setting up on ubuntu linux
 
-You can also use this repo ubuntu linux with hive and hadoop. Just clone or download repo as zip, then execute commands below.
+You can also use this repo to setup an ubuntu linux with hive and hadoop. Just clone or download repo as zip, then execute commands below.
 
 ```bash
 cd setup-on-ubuntu-scripts
@@ -33,7 +33,7 @@ bash
 
 # Test on an ubuntu container
 ```bash
-docker run --name test-script -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
+docker run --name test-script -p 8088:8088 -p 9870:9870 -p 2223:22 -p 8888:8888 -ti ubuntu:22.04 bash
 
 # On the shell opened for ubuntu container
 

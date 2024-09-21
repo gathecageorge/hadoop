@@ -16,7 +16,7 @@ CLEAN_UP="${2:-no}"
 apt update
 apt install -y sudo
 groupadd --gid 1000 $USERNAME 
-useradd --uid 1000 --gid 1000 -m $USERNAME 
+useradd -l --uid 1000 --gid 1000 -m $USERNAME 
 echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME 
 chmod 0440 /etc/sudoers.d/$USERNAME
 echo "USER $USERNAME created successfully"

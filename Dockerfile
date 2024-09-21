@@ -39,6 +39,13 @@ ENV PATH="$PATH:$HIVE_HOME/bin"
 # endregion HIVE_SETTINGS_HERE
 RUN /temp/install-hive.sh hadoop /temp yes
 
+# Setup anaconda: Arguments passed <username> <script-dir> <clean-up>
+# region ANACONDA_SETTINGS_HERE
+ENV ANACONDA_HOME="/home/hadoop/Anaconda"
+ENV PATH="$PATH:$ANACONDA_HOME/bin"
+# endregion ANACONDA_SETTINGS_HERE
+RUN /temp/install-anaconda.sh hadoop /temp yes
+
 # Allow SSH and startup script
 COPY startup.sh /usr/local/bin/startup.sh
 EXPOSE 22
