@@ -2,9 +2,25 @@ services:
   hadoop:
     build: 
       context: .
+      dockerfile: Hadoop.Dockerfile
     ports:
       - 8088:8088 # Hadoop main
       - 9870:9870 # Hadoop browser
+    volumes:
+      - ./sampledata:/home/hadoop/sampledata
+
+  anaconda:
+    build: 
+      context: .
+      dockerfile: Anaconda.Dockerfile
+    ports:
       - 8888:8888 # Jupyter notebook
     volumes:
-      - ./sampledata:/home/hadoop/notebooks
+      - ./sampledata:/home/anaconda/notebooks
+
+  hue:
+    image: gethue/hue:latest
+    ports:
+      - 8000:8888 # Hue
+    volumes:
+      - ./sampledata:/sampledata
