@@ -1,3 +1,9 @@
+# Ports
+- 8088:8088 # Hadoop main
+- 9870:9870 # Hadoop browser
+- 8888:8888 # Jupyter notebook
+
+
 # Running
 
 Using docker compose will build the image locally and run it. This might take alot of time, just git clone this repo, cd into the directory and run `docker compose up -d`
