@@ -1,0 +1,11 @@
+services:
+  hadoop:
+    build: 
+      context: .
+      dockerfile: Hadoop.Dockerfile
+    ports:
+      - 8088:8088 # Hadoop main
+      - 9870:9870 # Hadoop browser
+    volumes:
+      - ./sampledata:/home/hadoop/sampledata
+

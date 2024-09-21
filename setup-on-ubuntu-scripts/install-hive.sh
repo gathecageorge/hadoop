@@ -29,6 +29,9 @@ else
     sed -i "s/CURRENT_USER_TO_BE_REPLACED/$ARG_CURRENT_USER/g" hive/bin/hive-config.sh
 fi
 
+# Put hive config
+cat $ARG_SCRIPT_DIR/hive-config/hive-site.xml > hive/conf/hive-site.xml
+
 # source .bashrc
 source .bashrc
 

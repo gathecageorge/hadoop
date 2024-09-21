@@ -10,20 +10,21 @@
 
 # Running
 
-Using docker compose will build the image locally and run it. This might take alot of time, just git clone this repo, cd into the directory and run `docker compose up -d`.
+Using docker compose is the recommended way to run. Just git clone this repo, cd into the directory and run `docker compose up -d`. This will start hue, mysql database for hue and hadoop. For hadoop, online image will be used, incase you want to build locally, change `hadoop.yml` to `hadoop-build.yml` in `.env` file. 
 
-It also contains hue service so you can use it with hadoop service.
+If you want to start anaconda/jupyter/pyspark you need to add `anaconda.yml`(Uses remote image) or `anaconda-build.yml`(Build image locally, might take a long time) to `.env` file with `:` before each yml file.
 
-Using docker command is easier and uses an already built image thus faster.
+Using docker command.
 
 ```bash
-docker run -d --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+# Run on an x64 host machine
+docker run -v ./sampledata:/home/hadoop/sampledata -d --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 
 # If on apple silicon or arm
-docker run -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+docker run -v ./sampledata:/home/hadoop/sampledata -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 
 # To run anaconda/jupyter/pyspark image use below command instead
-docker run -d --name anaconda -p 8888:8888 --rm gathecageorge/anaconda-jupyter-pyspark:latest
+docker run -v ./sampledata:/home/anaconda/notebooks -d --name anaconda -p 8888:8888 --rm gathecageorge/anaconda-jupyter-pyspark:latest
 ```
 
 # Setting up on ubuntu linux
@@ -48,7 +49,9 @@ bash
 
 # Test on an ubuntu container
 ```bash
-docker run --name test-script -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
+# Runs an ubuntu container to test executing all the commands one by one
+# Will install hadoop, hive, anaconda, pyspark, jupyter
+docker run --name test-script -p 8888:8888 -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
 
 # On the shell opened for ubuntu container
 
