@@ -18,10 +18,10 @@ Using docker command.
 
 ```bash
 # Run on an x64 host machine
-docker run -v ./sampledata:/home/hadoop/sampledata -d --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+docker run -v hadoop_store:/home/hadoop/hadoop_store -v ./sampledata:/home/hadoop/sampledata -d --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 
 # If on apple silicon or arm
-docker run -v ./sampledata:/home/hadoop/sampledata -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
+docker run -v hadoop_store:/home/hadoop/hadoop_store -v ./sampledata:/home/hadoop/sampledata -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 
 # To run jupyter notebooks with pyspark image use below command instead
 docker run -v ./sampledata:/home/jovyan/work -d --name jupyter -p 8888:8888 --rm quay.io/jupyter/all-spark-notebook:latest
@@ -51,19 +51,14 @@ bash
 ```bash
 # Runs an ubuntu container to test executing all the commands one by one
 # Will install hadoop and hive
-docker run --name test-script -p 8888:8888 -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
+docker run --rm -v ./setup-on-ubuntu-scripts:/setup --name test-script -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
 
 # On the shell opened for ubuntu container
 
 # 1st batch of commands as root user; can be copied together
-apt update && apt install -y git
-git clone https://github.com/gathecageorge/hadoop.git /setup
-cd /setup/setup-on-ubuntu-scripts
-./install-user.sh hadoop
-su hadoop
+cd /setup && ./install-user.sh hadoop && su hadoop
 
 # 2nd batch of commands as hadoop user; can be copied together
-cd /home/hadoop
-bash
-/setup/setup-on-ubuntu-scripts/setup.sh
+cd /home/hadoop && /setup/setup.sh
+bash # Optional to open bash instead of sh shell
 ```

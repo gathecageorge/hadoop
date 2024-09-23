@@ -23,9 +23,6 @@ else
     sed -i "s/CURRENT_USER_TO_BE_REPLACED/$ARG_CURRENT_USER/g" .bashrc
 fi
 
-# source bashrc
-source .bashrc
-
 # setup hadoop
 cat $ARG_SCRIPT_DIR/hadoop-config/core-site.xml > hadoop/etc/hadoop/core-site.xml
 cat $ARG_SCRIPT_DIR/hadoop-config/hadoop-env.sh > hadoop/etc/hadoop/hadoop-env.sh
@@ -34,6 +31,6 @@ cat $ARG_SCRIPT_DIR/hadoop-config/mapred-site.xml > hadoop/etc/hadoop/mapred-sit
 cat $ARG_SCRIPT_DIR/hadoop-config/yarn-site.xml > hadoop/etc/hadoop/yarn-site.xml
 sed -i "s/CURRENT_USER_TO_BE_REPLACED/$ARG_CURRENT_USER/g" hadoop/etc/hadoop/hdfs-site.xml
 
-# Create data dir and format folder for hdfs
-mkdir -p hadoop_store/hdfs
-hadoop/bin/hdfs namenode -format
+# source bashrc
+source .bashrc
+

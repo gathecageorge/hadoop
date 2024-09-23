@@ -40,6 +40,7 @@ ENV PATH="$PATH:$HIVE_HOME/bin"
 RUN /temp/install-hive.sh hadoop /temp yes
 
 # Allow SSH and startup script
+COPY setup-on-ubuntu-scripts/install-initialize.sh /usr/local/bin/install-initialize.sh
 COPY startup-hadoop.sh /usr/local/bin/startup.sh
 EXPOSE 22
 EXPOSE 8088
@@ -47,4 +48,4 @@ EXPOSE 9870
 RUN sudo mkdir -p /var/run/sshd
 RUN sudo rm -rf /temp
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/startup.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/startup.sh hadoop"]

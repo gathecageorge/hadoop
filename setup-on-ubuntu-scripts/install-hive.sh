@@ -34,14 +34,3 @@ cat $ARG_SCRIPT_DIR/hive-config/hive-site.xml > hive/conf/hive-site.xml
 
 # source .bashrc
 source .bashrc
-
-# Create hive dir in dfs
-sudo service ssh start
-hadoop/sbin/start-all.sh
-hadoop/bin/hdfs dfs -mkdir /tmp
-hadoop/bin/hdfs dfs -chmod g+w /tmp
-hadoop/bin/hdfs dfs -mkdir -p /home/$ARG_CURRENT_USER/hive/warehouse 
-hadoop/bin/hdfs dfs -chmod g+w /home/$ARG_CURRENT_USER/hive/warehouse
-
-# Init hive DB
-hive/bin/schematool -initSchema -dbType derby

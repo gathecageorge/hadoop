@@ -1,9 +1,13 @@
 services:
   hadoop:
     image: gathecageorge/hadoop:3.2.0
+    hostname: hadoop-server
     ports:
       - 8088:8088 # Hadoop main
       - 9870:9870 # Hadoop browser
     volumes:
       - ./sampledata:/home/hadoop/sampledata
+      - hadoop_store:/home/hadoop/hadoop_store
 
+volumes:
+  hadoop_store: {}

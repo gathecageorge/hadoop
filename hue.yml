@@ -8,6 +8,11 @@ services:
       MYSQL_PASSWORD: secretpassword
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   hue:
     image: gethue/hue:latest
@@ -17,7 +22,8 @@ services:
       - ./setup-on-ubuntu-scripts/hue-config/hue.ini:/usr/share/hue/desktop/conf/hue.ini
       - ./sampledata:/sampledata
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
 volumes:
   mysql_data: {}
