@@ -1,0 +1,9 @@
+services:
+  jupyter:
+    image: quay.io/jupyter/all-spark-notebook:latest
+    hostname: jupyter
+    volumes:
+      - ./sampledata:/home/jovyan/work
+    ports:
+      - 8888:8888
+

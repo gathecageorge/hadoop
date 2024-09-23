@@ -1,8 +1,0 @@
-services:
-  anaconda:
-    image: gathecageorge/anaconda-jupyter-pyspark:latest
-    ports:
-      - 8888:8888 # Jupyter notebook
-    volumes:
-      - ./sampledata:/home/anaconda/notebooks
-

@@ -4,15 +4,15 @@
 - 8088:8088 # Hadoop main
 - 9870:9870 # Hadoop browser
 
-# gathecageorge/anaconda-jupyter-pyspark:latest
-- 8888:8888 # Jupyter notebook
+# quay.io/jupyter/all-spark-notebook:latest
+- 8888:8888 # Jupyter notebook with pyspark
 ```
 
 # Running
 
-Using docker compose is the recommended way to run. Just git clone this repo, cd into the directory and run `docker compose up -d`. This will start hue, mysql database for hue and hadoop. For hadoop, online image will be used, incase you want to build locally, change `hadoop.yml` to `hadoop-build.yml` in `.env` file. 
+Using docker compose is the recommended way to run. Just git clone this repo, cd into the directory and run `docker compose up -d`. This will start hue, mysql database for hue and hadoop. For hadoop, online prebuilt image will be used, incase you want to build locally, change `hadoop.yml` to `hadoop-build.yml` in `.env` file. 
 
-If you want to start anaconda/jupyter/pyspark you need to add `anaconda.yml`(Uses remote image) or `anaconda-build.yml`(Build image locally, might take a long time) to `.env` file with `:` before each yml file.
+If you want to start jupyter notebooks with pyspark you need to add `jupyter.yml` to `.env` file with `:` before each yml file.
 
 Using docker command.
 
@@ -23,8 +23,8 @@ docker run -v ./sampledata:/home/hadoop/sampledata -d --name hadoop -p 8088:8088
 # If on apple silicon or arm
 docker run -v ./sampledata:/home/hadoop/sampledata -d --platform linux/amd64 --name hadoop -p 8088:8088 -p 9870:9870 --rm gathecageorge/hadoop:3.2.0
 
-# To run anaconda/jupyter/pyspark image use below command instead
-docker run -v ./sampledata:/home/anaconda/notebooks -d --name anaconda -p 8888:8888 --rm gathecageorge/anaconda-jupyter-pyspark:latest
+# To run jupyter notebooks with pyspark image use below command instead
+docker run -v ./sampledata:/home/jovyan/work -d --name jupyter -p 8888:8888 --rm quay.io/jupyter/all-spark-notebook:latest
 ```
 
 # Setting up on ubuntu linux
@@ -50,7 +50,7 @@ bash
 # Test on an ubuntu container
 ```bash
 # Runs an ubuntu container to test executing all the commands one by one
-# Will install hadoop, hive, anaconda, pyspark, jupyter
+# Will install hadoop and hive
 docker run --name test-script -p 8888:8888 -p 8088:8088 -p 9870:9870 -p 2223:22 -ti ubuntu:22.04 bash
 
 # On the shell opened for ubuntu container

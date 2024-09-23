@@ -13,5 +13,4 @@ cd /home/$CURRENT_USER
 source $SCRIPT_DIR/install-ssh.sh $SCRIPT_DIR # Arguments passed <script-dir>
 source $SCRIPT_DIR/install-hadoop.sh $CURRENT_USER $SCRIPT_DIR # Arguments passed <username> <script-dir>
 source $SCRIPT_DIR/install-hive.sh $CURRENT_USER $SCRIPT_DIR # Arguments passed <username> <script-dir>
-source $SCRIPT_DIR/install-anaconda.sh $CURRENT_USER $SCRIPT_DIR # Arguments passed <username> <script-dir>
 source $SCRIPT_DIR/install-done.sh
