@@ -1,2 +1,4 @@
 sampledata/*
 !sampledata/.hidden
+.env
+

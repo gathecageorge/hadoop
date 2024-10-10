@@ -4,6 +4,8 @@ services:
     hostname: jupyter
     volumes:
       - ./sampledata:/home/jovyan/work
+    command: |
+      start-notebook.py --PasswordIdentityProvider.hashed_password='${JUPYTER_PASSWORD}'
     ports:
       - 8888:8888
 

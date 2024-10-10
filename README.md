@@ -5,10 +5,12 @@
 - 9870:9870 # Hadoop browser
 
 # quay.io/jupyter/all-spark-notebook:latest
-- 8888:8888 # Jupyter notebook with pyspark
+- 8888:8888 # Jupyter notebook with pyspark (Jupyter password: admin)
 ```
 
 # Running
+
+First copy `.env.template` to `.env` to make changes as needed. ie `cp .env.template .env`
 
 Using docker compose is the recommended way to run. Just git clone this repo, cd into the directory and run `docker compose up -d`. This will start hue, mysql database for hue and hadoop. For hadoop, online prebuilt image will be used, incase you want to build locally, change `hadoop.yml` to `hadoop-build.yml` in `.env` file. 
 
